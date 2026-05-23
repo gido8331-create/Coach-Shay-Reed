@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Coach Shay Reed — The Multidimensional Woman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #C9A84C; --gold-light: #F0D88A; --gold-dark: #8A6820;
+    --charcoal: #1A1A1A; --off-white: #FAF8F3; --warm-gray: #E8E4DB; --text-muted: #6B6560;
+    --nav-h: 60px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--charcoal); color: var(--off-white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--nav-h);
+    padding: 0 1.5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(26,26,26,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--off-white); text-decoration: none; opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-social { display: flex; gap: 0.75rem; align-items: center; }
+  .nav-social a {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(201,168,76,0.4); border-radius: 50%;
+    color: var(--gold); text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .nav-social a:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); }
+  .nav-social svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* HERO */
+  .hero { padding-top: var(--nav-h); display: flex; flex-direction: column; }
+  .hero-img {
+    width: 100%; height: 65vw; min-height: 260px; max-height: 420px;
+    position: relative; overflow: hidden; flex-shrink: 0;
+  }
+  .hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+  .hero-img::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(to bottom, transparent 50%, var(--charcoal) 100%);
+  }
+  .hero-copy { padding: 2rem 1.5rem 3rem; display: flex; flex-direction: column; align-items: flex-start; }
+  .hero-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .hero-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--gold); flex-shrink: 0; }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 9vw, 4.5rem);
+    line-height: 1.08; font-weight: 700; color: var(--off-white);
+  }
+  .hero-name em { font-style: italic; color: var(--gold-light); font-weight: 400; }
+  .hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+    font-style: italic; color: rgba(250,248,243,0.5); margin: 0.75rem 0 0.5rem;
+  }
+  .hero-tagline { font-size: 0.88rem; color: rgba(250,248,243,0.5); margin-bottom: 2rem; line-height: 1.85; max-width: 32rem; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 2rem; background: var(--gold); color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; width: 100%; justify-content: center;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  /* INTRO STRIP */
+  .intro-strip { background: var(--gold); padding: 2.5rem 1.5rem; text-align: center; }
+  .intro-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 5vw, 2.1rem);
+    color: var(--charcoal); font-weight: 700; line-height: 1.3;
+  }
+  .intro-strip h2 em { font-style: italic; font-weight: 400; }
+
+  /* SERVICES */
+  .services { background: var(--off-white); padding: 3rem 1rem; }
+  .services-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: 1.5px; max-width: 1100px; margin: 0 auto; background: var(--warm-gray);
+  }
+  .service-card {
+    background: var(--off-white); padding: 2rem 1.5rem;
+    display: flex; flex-direction: column; gap: 0.9rem;
+    position: relative; overflow: hidden; transition: background 0.25s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 0; background: var(--gold); transition: height 0.35s ease;
+  }
+  .service-card:hover { background: #FFFEFB; }
+  .service-card:hover::before { height: 100%; }
+  .service-number { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); font-weight: 500; }
+  .service-icon { width: 44px; height: 44px; background: var(--charcoal); display: flex; align-items: center; justify-content: center; }
+  .service-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .service-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--charcoal); line-height: 1.3; }
+  .service-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; flex: 1; }
+  .btn-service {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+    padding: 0.85rem 1.25rem; border: 1.5px solid var(--charcoal); background: transparent;
+    color: var(--charcoal); font-family: 'DM Sans', sans-serif; font-size: 0.72rem;
+    font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; text-decoration: none; width: 100%;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-service:hover { background: var(--charcoal); color: var(--gold); }
+  .btn-service svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* COMMUNITY / EMAIL FORM SECTION */
+  .community {
+    background: var(--charcoal);
+    padding: 4rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .community h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    color: var(--off-white); font-weight: 700; margin-bottom: 0.75rem;
+  }
+  .community h2 em { font-style: italic; color: var(--gold-light); }
+  .community p {
+    font-size: 0.9rem; color: rgba(250,248,243,0.5);
+    margin-bottom: 2rem; line-height: 1.8; max-width: 28rem; margin-left: auto; margin-right: auto;
+  }
+  .email-form {
+    display: flex; flex-direction: column; gap: 1rem;
+    max-width: 420px; margin: 0 auto;
+  }
+  .form-field { display: flex; flex-direction: column; gap: 0.4rem; text-align: left; }
+  .form-field label {
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .form-field input {
+    padding: 0.85rem 1rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  .form-field input::placeholder { color: rgba(250,248,243,0.3); }
+  .form-field input:focus { border-color: var(--gold); }
+  .btn-submit {
+    padding: 1rem 2rem; background: var(--gold); color: var(--charcoal);
+    font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    border: none; cursor: pointer; width: 100%;
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+  .btn-submit:active { transform: scale(0.98); }
+
+  /* SOCIAL SECTION */
+  .social-strip {
+    background: #111;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+  .social-strip p {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(250,248,243,0.4); margin-bottom: 1.25rem;
+  }
+  .social-icons { display: flex; justify-content: center; gap: 1rem; }
+  .social-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px;
+    border: 1px solid rgba(201,168,76,0.4); border-radius: 50%;
+    color: var(--gold); text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .social-icon:hover { background: var(--gold); color: var(--charcoal); border-color: var(--gold); transform: translateY(-3px); }
+  .social-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* FOOTER */
+  footer {
+    background: #111; padding: 2rem 1.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); }
+  .footer-tagline { font-size: 0.72rem; color: rgba(250,248,243,0.35); letter-spacing: 0.08em; text-transform: uppercase; }
+
+  /* TABLET */
+  @media (min-width: 600px) {
+    :root { --nav-h: 68px; }
+    nav { padding: 0 2.5rem; }
+    .hero-copy { padding: 2.5rem 2.5rem 3.5rem; }
+    .btn-primary { width: fit-content; justify-content: flex-start; }
+    .intro-strip { padding: 3rem 2.5rem; }
+    .services { padding: 4rem 2rem; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .btn-service { width: fit-content; justify-content: flex-start; }
+    .community { padding: 5rem 2.5rem; }
+    footer { flex-direction: row; justify-content: space-between; padding: 2rem 2.5rem; text-align: left; }
+  }
+
+  /* DESKTOP */
+  @media (min-width: 900px) {
+    :root { --nav-h: 72px; }
+    nav { padding: 0 4rem; }
+    .hero { flex-direction: row; min-height: 100vh; align-items: stretch; }
+    .hero-copy {
+      flex: 0 0 50%; padding: 8rem 4rem 6rem 5rem;
+      justify-content: center; position: relative;
+    }
+    .hero-copy::after {
+      content: ''; position: absolute; top: 10%; right: 0;
+      width: 1px; height: 80%;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.35), transparent);
+    }
+    .hero-img { flex: 0 0 50%; height: auto; max-height: none; min-height: 0; order: 2; }
+    .hero-img::after {
+      background: linear-gradient(to right, var(--charcoal) 0%, transparent 25%),
+                  linear-gradient(to top, rgba(26,26,26,0.3) 0%, transparent 60%);
+    }
+    .btn-primary { width: fit-content; }
+    .services { padding: 5rem 3rem; }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+    .btn-service { width: fit-content; }
+    footer { padding: 2.5rem 4rem; }
+  }
+
+  @media (max-width: 540px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links li:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Shay Reed</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#community">Connect</a></li>
+    <li class="nav-social">
+      <a href="https://www.facebook.com/share/1EH6GRSx2y/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/coachshayreed?igsh=dWhoOXIyMDdvdDJ5&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="hero-eyebrow">Business Coach &amp; Consultant</p>
+    <h1 class="hero-name">Meet Coach <em>Shay Reed</em></h1>
+    <p class="hero-sub">The Multidimensional Woman</p>
+    <p class="hero-tagline">Empowering entrepreneurs and individuals to build credit, grow businesses, and create lasting financial freedom.</p>
+    <a href="#services" class="btn-primary">
+      Work With Me
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="hero-img">
+    <img src="shay.png" alt="Coach Shay Reed" />
+  </div>
+</section>
+
+<div class="intro-strip">
+  <h2>Here's how I can <em>help you</em> today</h2>
+</div>
+
+<section class="services" id="services">
+  <div class="services-grid">
+
+    <div class="service-card">
+      <span class="service-number">01</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v2m0 8v2m-4-6h2m4 0h2"/></svg></div>
+      <h3 class="service-title">Financial Wellness and Credit Consulting</h3>
+      <p class="service-desc">Take control of your financial future. We identify issues affecting your financial health and build a clear path to the credit and wellness you deserve.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-number">02</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h3 class="service-title">Business Credit</h3>
+      <p class="service-desc">Separate your personal and business finances. Build a strong business credit profile that opens doors to funding and growth.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-number">03</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"/><polygon points="12 15 17 21 7 21 12 15"/></svg></div>
+      <h3 class="service-title">Automobile Sales</h3>
+      <p class="service-desc">Navigate the car-buying process with confidence. Expert guidance on financing, negotiating, and securing the best deal for your budget.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-number">04</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+      <h3 class="service-title">Tax Filing &amp; Training</h3>
+      <p class="service-desc">Accurate, stress-free tax prep for individuals and small businesses. Learn smart tax strategies to keep more of what you earn.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-number">05</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <h3 class="service-title">Bookkeeping &amp; Accounting</h3>
+      <p class="service-desc">Keep your finances organized and your business thriving. Monthly reconciliations, reports, and more so you can focus on growth.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <div class="service-card">
+      <span class="service-number">06</span>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <h3 class="service-title">Digital Marketing</h3>
+      <p class="service-desc">Get found, get noticed, get clients. From social media strategy to brand building, grow your presence and turn followers into customers.</p>
+      <a href="#community" class="btn-service">Get Started <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- COMMUNITY / EMAIL FORM -->
+<section class="community" id="community">
+  <h2>Join My <em>Community</em></h2>
+  <p>Get financial tips, business insights, and exclusive updates from Coach Shay delivered straight to your inbox.</p>
+  <form class="email-form" action="https://formspree.io/f/your-form-id" method="POST">
+    <div class="form-field">
+      <label for="firstname">First Name</label>
+      <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" required />
+    </div>
+    <div class="form-field">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+    </div>
+    <button type="submit" class="btn-submit">Join My Community →</button>
+  </form>
+</section>
+
+<!-- SOCIAL -->
+<div class="social-strip">
+  <p>Follow Coach Shay</p>
+  <div class="social-icons">
+    <a href="https://www.facebook.com/share/1EH6GRSx2y/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/coachshayreed?igsh=dWhoOXIyMDdvdDJ5&utm_source=qr" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+  </div>
+</div>
+
+<footer id="contact">
+  <div class="footer-logo">Coach Shay Reed</div>
+  <p class="footer-tagline">The Multidimensional Woman &nbsp;·&nbsp; Building Empires</p>
+</footer>
+
+</body>
+</html>
